@@ -1,0 +1,6 @@
+{
+  "name": "Homestead Mandate",
+  "description": "An institutional holding company building generational legacy through ethical, enduring enterprises across the Health, Agricultural, and Technology sectors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

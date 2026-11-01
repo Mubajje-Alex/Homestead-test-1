@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: #111814;
+    background-color: #F8F9F7;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid #14532D;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
