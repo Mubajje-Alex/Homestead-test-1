@@ -3,6 +3,18 @@ import sectorHealthImg from '../assets/images/sector_health_care_1793220302107.j
 import sectorAgricultureImg from '../assets/images/sector_agriculture_fields_1793220303392.jpg';
 import sectorTechnologyImg from '../assets/images/sector_technology_studio_1793220304447.jpg';
 import covenantLedgerImg from '../assets/images/covenant_stewardship_ledger_1793220305143.jpg';
+import mandateAtriumImg from '../assets/images/mandate_archive_atrium_1793557645639.jpg';
+import enterprisesHubImg from '../assets/images/enterprises_cooperative_hub_1793557646627.jpg';
+import covenantFieldAuditImg from '../assets/images/covenant_field_audit_1793557729328.jpg';
+
+export enum PageRoute {
+  Home = '/',
+  Mandate = '/mandate',
+  Sectors = '/sectors',
+  Enterprises = '/enterprises',
+  Covenant = '/covenant',
+  Proposal = '/proposal',
+}
 
 export enum SectorKey {
   Health = 'Health',
@@ -24,9 +36,15 @@ export interface SectorDetail {
   primaryMetricValue: string;
   primaryMetricLabel: string;
   primaryMetricContext: string;
+  regionalHubs: string;
+  committedCapital: string;
   capabilities: {
     name: string;
     outcome: string;
+  }[];
+  benchmarks: {
+    label: string;
+    value: string;
   }[];
   capitalShare: string;
   holdingHorizon: string;
@@ -89,12 +107,36 @@ export interface PartnerTestimonial {
   outcomeNote: string;
 }
 
+export interface MandateMilestone {
+  year: string;
+  title: string;
+  sectorScope: string;
+  detail: string;
+}
+
+export interface CapitalComparisonRow {
+  dimension: string;
+  homesteadModel: string;
+  conventionalModel: string;
+}
+
+export interface CouncilMember {
+  name: string;
+  role: string;
+  discipline: string;
+  tenure: string;
+  bio: string;
+}
+
 export const VISUAL_ASSETS = {
   heroCampus: heroCampusImg,
   sectorHealth: sectorHealthImg,
   sectorAgriculture: sectorAgricultureImg,
   sectorTechnology: sectorTechnologyImg,
   covenantLedger: covenantLedgerImg,
+  mandateAtrium: mandateAtriumImg,
+  enterprisesHub: enterprisesHubImg,
+  covenantFieldAudit: covenantFieldAuditImg,
 };
 
 export const HERO_METRICS = [
@@ -150,9 +192,113 @@ export const SYNERGY_BRIDGES: SynergyBridge[] = [
     summary:
       'Regional clinics require clinical software and cold-chain monitors that function reliably even when grid power or fiber connectivity fluctuates, with zero monetization of patient health records.',
     operationalMechanism:
-      'CivicMed Ledger Systems pairs local-first diagnostic imaging records with solar biologic refrigeration monitors for insulin and maternal vaccines.',
+      'CivicMed Ledger Systems pairs local-first diagnostic imaging records with Helios solar biologic refrigeration controllers for insulin and maternal vaccines.',
     quantifiedProof:
       '99.94% clinical and cold-storage operational uptime across 64 partner clinics and dispensaries.',
+  },
+];
+
+export const MANDATE_CHRONOLOGY: MandateMilestone[] = [
+  {
+    year: '2014',
+    title: 'Ratification of the Homestead Charter',
+    sectorScope: 'Institutional Governance',
+    detail:
+      'Established in the Willamette Basin as an evergreen holding trust prohibiting leveraged buyouts, forced asset sales, and extractive resource depletion.',
+  },
+  {
+    year: '2016',
+    title: 'Inaugural 30-Year Soil Transition Leases',
+    sectorScope: 'Agricultural Sector',
+    detail:
+      'Launched Loam & Lineage Estates alongside 28 founding family farmsteads to finance multi-year transitions from synthetic monocropping into polyculture grains and pulses.',
+  },
+  {
+    year: '2018',
+    title: 'Veridian Preventative Clinical Network',
+    sectorScope: 'Health Sector',
+    detail:
+      'Opened our first four sunlit primary care and midwifery centers operating on transparent household memberships with zero medical debt collection.',
+  },
+  {
+    year: '2019',
+    title: 'Open-Schematic Field Hardware Studio',
+    sectorScope: 'Technology Sector',
+    detail:
+      'Founded Arbor Field Instruments in Zurich and Portland to build field-repairable soil and cold-storage telemetry free from vendor SaaS lock-in.',
+  },
+  {
+    year: '2022',
+    title: 'Cross-Continental Cold-Chain & Biologics Expansion',
+    sectorScope: 'Health · Agriculture',
+    detail:
+      'Commissioned regional sterile medicine compounding and solar-thermal cooperative harvest cooling hubs across East Africa and the Alpine corridor.',
+  },
+  {
+    year: '2026',
+    title: '$480M Permanent Capital & 100% Covenant Verification',
+    sectorScope: 'All Three Sectors',
+    detail:
+      'Reached 14 operating enterprises with 18.4% weighted practitioner equity ownership and unqualified physical audits across soil, clinical, and hardware systems.',
+  },
+];
+
+export const CAPITAL_COMPARISON_ROWS: CapitalComparisonRow[] = [
+  {
+    dimension: 'Capital Holding Horizon',
+    homesteadModel: 'Permanent evergreen capital (20–30+ year minimum charter)',
+    conventionalModel: '3–7 year fund lifecycle forcing premature exit or resale',
+  },
+  {
+    dimension: 'Debt & Leverage Discipline',
+    homesteadModel: 'Zero leveraged buyout debt; conservative asset-backed reserves',
+    conventionalModel: 'Heavy acquisition debt placed onto operating company balance sheets',
+  },
+  {
+    dimension: 'Practitioner & Worker Equity',
+    homesteadModel: 'Mandatory 15–25% non-dilutable equity held by clinicians, growers & engineers',
+    conventionalModel: 'Concentrated carry for financial sponsors; minimal frontline ownership',
+  },
+  {
+    dimension: 'Dividend Distribution Gate',
+    homesteadModel: '20% cash escrow released only after passing soil & clinical outcome audits',
+    conventionalModel: 'Financial covenants only; ecological and patient externalities ignored',
+  },
+  {
+    dimension: 'Technology & Data Rights',
+    homesteadModel: 'Published repair schematics; cryptographic patient & farmer data sovereignty',
+    conventionalModel: 'Proprietary repair locks, subscription rent-seeking & data monetization',
+  },
+];
+
+export const STEWARDSHIP_COUNCIL: CouncilMember[] = [
+  {
+    name: 'Eleanor Vance-Kerr, MD',
+    role: 'Chair of Clinical Stewardship',
+    discipline: 'Preventative Medicine & Maternal Health',
+    tenure: 'Steward since 2015',
+    bio: 'Former rural hospital chief of medicine overseeing clinical quality audits, transparent pricing charters, and essential biologics access.',
+  },
+  {
+    name: 'Dr. Thomasenga Mwangi, PhD',
+    role: 'Chief Soil & Watershed Auditor',
+    discipline: 'Agroecology & Post-Harvest Systems',
+    tenure: 'Steward since 2016',
+    bio: 'Leads annual 30cm topsoil carbon verification, heritage seed multiplication standards, and cooperative cold-chain governance across two continents.',
+  },
+  {
+    name: 'Lukas Meier, Dipl.-Ing.',
+    role: 'Principal Systems & Hardware Steward',
+    discipline: 'Embedded Telemetry & Right-to-Repair',
+    tenure: 'Steward since 2019',
+    bio: 'Industrial electronics architect ensuring every sensor, microgrid controller, and clinical workstation ships with open service schematics.',
+  },
+  {
+    name: 'Claire Deschamps, CFA',
+    role: 'Fiduciary Chancellor',
+    discipline: 'Permanent Endowment & Steward Trusts',
+    tenure: 'Steward since 2014',
+    bio: 'Co-author of the 2014 Homestead Covenant, safeguarding subsidiary balance sheets against extractive debt and administering worker equity trusts.',
   },
 ];
 
@@ -175,19 +321,29 @@ export const SECTORS_DATA: SectorDetail[] = [
     primaryMetricValue: '-28%',
     primaryMetricLabel: 'Acute Hospital Readmissions',
     primaryMetricContext: 'Measured across 19 preventative clinics from 2022 to 2026',
+    regionalHubs: 'Willamette Basin · Intermountain West · East Africa',
+    committedCapital: '$182.4M Permanent Allocation',
     capabilities: [
       {
         name: 'Community Primary & Maternal Clinics',
-        outcome: 'Transparent monthly household memberships with same-day diagnostic imaging and midwifery.',
+        outcome:
+          'Transparent monthly household memberships with same-day diagnostic imaging and midwifery.',
       },
       {
         name: 'Essential Biologics & Compounding',
-        outcome: 'Regional cold-stable manufacturing for insulin, electrolytes, and maternal therapeutics.',
+        outcome:
+          'Regional cold-stable manufacturing for insulin, electrolytes, and maternal therapeutics.',
       },
       {
         name: 'Metabolic & Nutritional Prescriptions',
-        outcome: 'Direct clinical integration with regional regenerative farmsteads for chronic disease reversal.',
+        outcome:
+          'Direct clinical integration with regional regenerative farmsteads for chronic disease reversal.',
       },
+    ],
+    benchmarks: [
+      { label: 'Annual Patient Encounters', value: '412,000' },
+      { label: 'Clinician Annual Retention', value: '96.4%' },
+      { label: 'Essential Drug Cost Reduction', value: '-38%' },
     ],
     capitalShare: '38% of Mandate Capital',
     holdingHorizon: '25+ Year Core Hold',
@@ -210,19 +366,29 @@ export const SECTORS_DATA: SectorDetail[] = [
     primaryMetricValue: '+34%',
     primaryMetricLabel: 'Topsoil Organic Carbon',
     primaryMetricContext: 'Verified by independent core sampling across 68,400 stewarded acres',
+    regionalHubs: 'Pacific Northwest · Great Plains · Rift Valley',
+    committedCapital: '$163.2M Permanent Allocation',
     capabilities: [
       {
         name: 'Generational Land Transition Leases',
-        outcome: '30-year shared-harvest leases enabling young and retiring farmers to transition without debt distress.',
+        outcome:
+          '30-year shared-harvest leases enabling young and retiring farmers to transition without debt distress.',
       },
       {
         name: 'Open-Pollinated & Heritage Seed Banks',
-        outcome: 'Regional multiplication of drought-resilient grains, pulses, and rootstock owned by growers.',
+        outcome:
+          'Regional multiplication of drought-resilient grains, pulses, and rootstock owned by growers.',
       },
       {
         name: 'Solar-Thermal Cold-Chain Hubs',
-        outcome: 'Farmgate aggregation and cooling infrastructure cutting perishable spoilage by over 40%.',
+        outcome:
+          'Farmgate aggregation and cooling infrastructure cutting perishable spoilage by over 40%.',
       },
+    ],
+    benchmarks: [
+      { label: 'Verified Regenerative Land', value: '68,400 ac' },
+      { label: 'Post-Harvest Spoilage Cut', value: '-41%' },
+      { label: 'Partner Family Farmsteads', value: '180' },
     ],
     capitalShare: '34% of Mandate Capital',
     holdingHorizon: '30+ Year Land & Co-op Hold',
@@ -245,19 +411,29 @@ export const SECTORS_DATA: SectorDetail[] = [
     primaryMetricValue: '99.94%',
     primaryMetricLabel: 'Field System Uptime',
     primaryMetricContext: 'Across 140 offline-capable clinical and agricultural microgrid sites',
+    regionalHubs: 'Zurich · Portland · Nairobi Engineering Labs',
+    committedCapital: '$134.4M Permanent Allocation',
     capabilities: [
       {
         name: 'Right-to-Repair Agronomic Telemetry',
-        outcome: 'Modular soil moisture, watershed, and cold-room sensors serviceable with standard hand tools.',
+        outcome:
+          'Modular soil moisture, watershed, and cold-room sensors serviceable with standard hand tools.',
       },
       {
         name: 'Local-First Clinical & Inventory Ledgers',
-        outcome: 'Zero-downtime hospital records and pharmacy stock systems that work online or offline.',
+        outcome:
+          'Zero-downtime hospital records and pharmacy stock systems that work online or offline.',
       },
       {
         name: 'Rural Solar & Cold-Storage Controllers',
-        outcome: 'Solid-state microgrid load balancers protecting medical biologics and harvest cold rooms.',
+        outcome:
+          'Solid-state microgrid load balancers protecting medical biologics and harvest cold rooms.',
       },
+    ],
+    benchmarks: [
+      { label: 'Modular Field Nodes Active', value: '14,200' },
+      { label: 'Mean Local Repair Time', value: '22 min' },
+      { label: 'Commercial Data Brokered', value: '0 Bytes' },
     ],
     capitalShare: '28% of Mandate Capital',
     holdingHorizon: '20+ Year Operating Hold',
@@ -340,6 +516,43 @@ export const ENTERPRISES_DATA: EnterpriseItem[] = [
     ],
   },
   {
+    id: 'clearwater-diagnostics',
+    name: 'Clearwater Rural Diagnostics',
+    sector: SectorKey.Health,
+    foundedYear: 2023,
+    region: 'Appalachia & Northern Plains',
+    stage: 'Foundational Build',
+    summary:
+      'Mobile and small-town diagnostic pathology, digital radiography, and waterborne-pathogen screening laboratories serving county clinics within 24 hours.',
+    headlineMetric: '18-hour median lab turnaround',
+    secondaryMetric: '31 rural counties served directly',
+    stewardEquityShare: '17% Lab Technologist Equity',
+    governanceLead: 'Dr. Kwame Mensah-Bonsu, MD',
+    covenantFocus: 'Published cash lab tariff; zero out-of-network balance billing',
+    operatingThesis:
+      'Delayed biopsy and blood-panel turnarounds turn treatable conditions into acute emergencies in rural counties. Clearwater places compact reference labs directly inside regional clinic hubs.',
+    auditedOutcomes: [
+      {
+        metric: 'Diagnostic Pathology Turnaround Time',
+        baseline: '5.8 days',
+        current: '18 hours (-87%)',
+        period: '2024–2026',
+      },
+      {
+        metric: 'Average Diagnostic Panel Patient Out-of-Pocket Cost',
+        baseline: '$185',
+        current: '$42 (-77%)',
+        period: '2025 Audit',
+      },
+      {
+        metric: 'Early Stage Metabolic & Renal Detection Rate',
+        baseline: '24%',
+        current: '61%',
+        period: '2025 Cohort',
+      },
+    ],
+  },
+  {
     id: 'loam-and-lineage',
     name: 'Loam & Lineage Estates',
     sector: SectorKey.Agriculture,
@@ -389,7 +602,7 @@ export const ENTERPRISES_DATA: EnterpriseItem[] = [
     secondaryMetric: '6 regional hubs · 9,200 grower members',
     stewardEquityShare: '25% Grower Cooperative Equity',
     governanceLead: 'Amina Ochieng, Operations Steward',
-    covenantFocus: 'Open-access cooperative tariff; zero Distress-Buy purchasing',
+    covenantFocus: 'Open-access cooperative tariff; zero distress-buy purchasing',
     operatingThesis:
       'Without farmgate cooling, growers are forced to sell perishable harvests within hours at distressed prices. Canopy provides phase-change solar cold rooms that extend shelf life by up to 21 days.',
     auditedOutcomes: [
@@ -410,6 +623,43 @@ export const ENTERPRISES_DATA: EnterpriseItem[] = [
         baseline: '72 hours',
         current: '120 hours',
         period: '2025 Engineering Audit',
+      },
+    ],
+  },
+  {
+    id: 'heritage-seed-millworks',
+    name: 'Heritage Seed & Pulse Millworks',
+    sector: SectorKey.Agriculture,
+    foundedYear: 2019,
+    region: 'Palouse Basin & Upper Midwest',
+    stage: 'Scale & Stewardship',
+    summary:
+      'Open-pollinated seed multiplication sanctuaries and stone/roller regional grain mills supplying clinics, schools, and independent bakeries.',
+    headlineMetric: '114 non-patented cultivars',
+    secondaryMetric: '48,000 tons milled regionally in 2025',
+    stewardEquityShare: '20% Miller & Seed-Breeder Trust',
+    governanceLead: 'Ingrid Solberg, Master Seed Steward',
+    covenantFocus: 'Public-domain seed pledge; farmer right-to-save harvest seed',
+    operatingThesis:
+      'Uniform hybrid monocultures are vulnerable to drought and fungal shifts. Heritage Seed & Pulse Millworks breeds regionally adapted open-pollinated varieties that farmers legally own and replant freely.',
+    auditedOutcomes: [
+      {
+        metric: 'Drought-Year Yield Stability vs. Commodity Hybrids',
+        baseline: 'Baseline 100',
+        current: 'Index 129 (+29%)',
+        period: '2023 Drought Season',
+      },
+      {
+        metric: 'Mineral Micronutrient Retention (Iron & Zinc)',
+        baseline: 'Refined Roller Baseline',
+        current: '+46% Bioavailable',
+        period: '2025 Nutritional Assay',
+      },
+      {
+        metric: 'Grower Seed Royalty Burden',
+        baseline: '$64 / acre Industry Avg',
+        current: '$0 Replant Royalty',
+        period: 'Permanent Charter',
       },
     ],
   },
@@ -487,6 +737,43 @@ export const ENTERPRISES_DATA: EnterpriseItem[] = [
       },
     ],
   },
+  {
+    id: 'helios-microgrid',
+    name: 'Helios Microgrid Controllers',
+    sector: SectorKey.Technology,
+    foundedYear: 2021,
+    region: 'Nairobi, Alpine & Rural Western Grids',
+    stage: 'Scale & Stewardship',
+    summary:
+      'Solid-state solar-battery load controllers prioritizing critical clinical refrigeration, surgical lighting, and agricultural cold rooms during grid brownouts.',
+    headlineMetric: '140 rural microgrids stabilized',
+    secondaryMetric: '15-year warrantied power electronics',
+    stewardEquityShare: '17% Field Technician & Engineer Pool',
+    governanceLead: 'David Kamau, Chief Power Systems Engineer',
+    covenantFocus: 'Non-proprietary battery chemistry support; local technician training',
+    operatingThesis:
+      'Critical rural clinics and harvest cooling hubs fail when inverter electronics require cloud activation or proprietary battery packs. Helios controllers operate autonomously with any standard LFP or lead-carbon bank.',
+    auditedOutcomes: [
+      {
+        metric: 'Biologic & Vaccine Spoilage Events Due to Power Loss',
+        baseline: '7.4 events / yr',
+        current: '0.0 events / yr',
+        period: '2023–2026',
+      },
+      {
+        metric: 'Diesel Generator Fuel Displacement at Partner Clinics',
+        baseline: '100% Baseline',
+        current: '14% (-86% diesel burn)',
+        period: '2025 Audit',
+      },
+      {
+        metric: 'Certified Regional Technicians Trained & Equipped',
+        baseline: '18',
+        current: '240 technicians',
+        period: '2022–2026',
+      },
+    ],
+  },
 ];
 
 export const COVENANT_ARTICLES: CovenantArticle[] = [
@@ -495,7 +782,8 @@ export const COVENANT_ARTICLES: CovenantArticle[] = [
     title: 'Permanent Horizon Over Flip Economics',
     clause:
       'Every Homestead Mandate enterprise is capitalized with a minimum 20-to-30-year holding horizon. Leveraged buyouts, debt-funded dividend recapitalizations, and cosmetic pre-sale cost cutting are prohibited in our corporate charter.',
-    enforcementMechanism: 'Supermajority Stewardship Trust veto over any asset divestiture prior to Year 20.',
+    enforcementMechanism:
+      'Supermajority Stewardship Trust veto over any asset divestiture prior to Year 20.',
     auditBenchmark: '0 debt-leveraged recapitalizations since founding in 2014',
   },
   {
@@ -503,7 +791,8 @@ export const COVENANT_ARTICLES: CovenantArticle[] = [
     title: 'Non-Extractive Soil & Clinical Stewardship',
     clause:
       'No agricultural enterprise may distribute cash dividends in any fiscal year where independent soil core audits record net topsoil carbon loss. No health enterprise may link clinician compensation to diagnostic or procedural volume.',
-    enforcementMechanism: 'Mandatory escrow of 20% of operating distributable cash pending annual physical audit.',
+    enforcementMechanism:
+      'Mandatory escrow of 20% of operating distributable cash pending annual physical audit.',
     auditBenchmark: '100% of acreage and clinics passed independent 2025 physical audits',
   },
   {
@@ -511,7 +800,8 @@ export const COVENANT_ARTICLES: CovenantArticle[] = [
     title: 'Broad-Based Steward Co-Ownership',
     clause:
       'At least 15% of the voting and dividend-bearing equity in every operating company is held directly by its working nurses, physicians, agronomists, cold-chain operators, and hardware technicians.',
-    enforcementMechanism: 'Non-dilutable Steward Equity Class written into each subsidiary incorporation deed.',
+    enforcementMechanism:
+      'Non-dilutable Steward Equity Class written into each subsidiary incorporation deed.',
     auditBenchmark: '18.4% weighted average worker & practitioner ownership across portfolio',
   },
   {
@@ -519,8 +809,18 @@ export const COVENANT_ARTICLES: CovenantArticle[] = [
     title: 'Right-to-Repair & Data Sovereignty',
     clause:
       'All field hardware must ship with published repair schematics and standard fasteners. All clinical and agronomic software must operate local-first and never monetize, broker, or train external commercial models on user records.',
-    enforcementMechanism: 'Annual cryptographic and hardware teardown audit published in the Homestead Ledger.',
+    enforcementMechanism:
+      'Annual cryptographic and hardware teardown audit published in the Homestead Ledger.',
     auditBenchmark: '100% open field-service documentation; zero third-party data sales',
+  },
+  {
+    number: '05',
+    title: 'Proportional Compensation & Whistleblower Sanctuary',
+    clause:
+      'Total executive compensation within any Homestead subsidiary may not exceed 12 times the median full-time frontline technician, grower, or clinical nurse compensation. Direct anonymous safety and ecological reporting goes straight to the Fiduciary Chancellor.',
+    enforcementMechanism:
+      'Annual payroll ratio certification required prior to board compensation renewal.',
+    auditBenchmark: '8.6x weighted executive-to-median steward pay ratio in 2025',
   },
 ];
 

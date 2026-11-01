@@ -1,11 +1,17 @@
 import React from 'react';
-import { SectorKey } from '../data/homesteadData';
+import { PageRoute, SectorKey } from '../data/homesteadData';
 
 interface FooterProps {
-  onSelectSectorPortfolio: (sector: SectorKey) => void;
+  onNavigate: (route: PageRoute) => void;
+  onNavigateToSector: (sector: SectorKey) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onSelectSectorPortfolio }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onNavigateToSector }) => {
+  const handleRouteClick = (e: React.MouseEvent<HTMLAnchorElement>, route: PageRoute) => {
+    e.preventDefault();
+    onNavigate(route);
+  };
+
   return (
     <footer className="bg-[#F1F3EF] py-16 text-[#4A554E]">
       <div className="max-w-[1240px] mx-auto px-6">
@@ -13,7 +19,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSectorPortfolio }) => {
           {/* Institutional Identity & Regional Offices */}
           <div className="md:col-span-5 space-y-3">
             <a
-              href="#top"
+              href={PageRoute.Home}
+              onClick={(e) => handleRouteClick(e, PageRoute.Home)}
               className="font-serif text-xl font-semibold tracking-tight text-[#111814] inline-block"
             >
               Homestead Mandate
@@ -38,8 +45,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSectorPortfolio }) => {
               <li>
                 <button
                   type="button"
-                  onClick={() => onSelectSectorPortfolio(SectorKey.Health)}
-                  className="hover:text-[#111814] hover:underline underline-offset-4 transition-colors cursor-pointer"
+                  onClick={() => onNavigateToSector(SectorKey.Health)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 transition-colors cursor-pointer whitespace-nowrap"
                 >
                   01. Health &amp; Clinical Care
                 </button>
@@ -47,8 +54,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSectorPortfolio }) => {
               <li>
                 <button
                   type="button"
-                  onClick={() => onSelectSectorPortfolio(SectorKey.Agriculture)}
-                  className="hover:text-[#111814] hover:underline underline-offset-4 transition-colors cursor-pointer"
+                  onClick={() => onNavigateToSector(SectorKey.Agriculture)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 transition-colors cursor-pointer whitespace-nowrap"
                 >
                   02. Regenerative Agriculture
                 </button>
@@ -56,8 +63,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSectorPortfolio }) => {
               <li>
                 <button
                   type="button"
-                  onClick={() => onSelectSectorPortfolio(SectorKey.Technology)}
-                  className="hover:text-[#111814] hover:underline underline-offset-4 transition-colors cursor-pointer"
+                  onClick={() => onNavigateToSector(SectorKey.Technology)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 transition-colors cursor-pointer whitespace-nowrap"
                 >
                   03. Ethical Field Technology
                 </button>
@@ -65,30 +72,61 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSectorPortfolio }) => {
             </ul>
           </div>
 
-          {/* Institutional Navigation */}
+          {/* Institutional Pages Mirror */}
           <div className="md:col-span-2 space-y-3">
-            <h3 className="text-xs font-semibold text-[#111814]">Institution</h3>
+            <h3 className="text-xs font-semibold text-[#111814]">Pages</h3>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#mandate" className="hover:text-[#111814] hover:underline underline-offset-4">
-                  Founding Thesis
+                <a
+                  href={PageRoute.Home}
+                  onClick={(e) => handleRouteClick(e, PageRoute.Home)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 whitespace-nowrap"
+                >
+                  Institutional Overview
                 </a>
               </li>
               <li>
                 <a
-                  href="#enterprises"
-                  className="hover:text-[#111814] hover:underline underline-offset-4"
+                  href={PageRoute.Mandate}
+                  onClick={(e) => handleRouteClick(e, PageRoute.Mandate)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 whitespace-nowrap"
                 >
-                  Operating Portfolio
+                  The Mandate
                 </a>
               </li>
               <li>
-                <a href="#covenant" className="hover:text-[#111814] hover:underline underline-offset-4">
+                <a
+                  href={PageRoute.Sectors}
+                  onClick={(e) => handleRouteClick(e, PageRoute.Sectors)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 whitespace-nowrap"
+                >
+                  Three Sectors
+                </a>
+              </li>
+              <li>
+                <a
+                  href={PageRoute.Enterprises}
+                  onClick={(e) => handleRouteClick(e, PageRoute.Enterprises)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 whitespace-nowrap"
+                >
+                  Operating Enterprises
+                </a>
+              </li>
+              <li>
+                <a
+                  href={PageRoute.Covenant}
+                  onClick={(e) => handleRouteClick(e, PageRoute.Covenant)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 whitespace-nowrap"
+                >
                   Ethical Covenant
                 </a>
               </li>
               <li>
-                <a href="#inquiry" className="hover:text-[#111814] hover:underline underline-offset-4">
+                <a
+                  href={PageRoute.Proposal}
+                  onClick={(e) => handleRouteClick(e, PageRoute.Proposal)}
+                  className="hover:text-[#111814] hover:underline underline-offset-4 whitespace-nowrap"
+                >
                   Submit Proposal
                 </a>
               </li>
